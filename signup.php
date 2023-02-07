@@ -1,27 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+<?php include 'db.php'; ?>
 
-    <link rel="stylesheet" href="assets/signup.css">
-</head>
-<body>
-    
-    <div id="login-container">
-        <form action="post" id="form">
-            <input type="text" placeholder="Username" maxlength="16" id="username" name="username" required class="form-input">
-            <input type="password" placeholder="Password" maxlength="32" id="password" name="password" required class="form-input">
-            <input type="email" placeholder="Email" id="email" name="email" required class="form-input">
-            <input type="tel" placeholder="Phone (1234567890)" id="phone" name="phone" required class="form-input" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+<?php 
 
-            <div id="button-container">
-                <button type="submit" id="create-button">Create Account</button>
-            </div>
-        </form>
-    </div>
+$username = $_POST['username'];
+$password = $_POST['password'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$sql = "SELECT username FROM users WHERE username = $username";
+// echo mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
-</body>
-</html>
+if ($result) {
+    echo 'Username already exists';
+    mysqli_free_result($result);
+    sleep(5);
+    header('Location: login.html');
+} else {
+    mysqli_free_result($result);
+    $createUser = "INSERT INTO users (username, password, email, phone) VALUES ('$username', '$password', '$email', $phone)";
+    if (mysqli_query($conn, $createUser)) {
+        echo 'Account Created';
+        header('Location: login.html');
+    } else {
+        echo 'Error';
+        header('Location: login.html');
+    }
+}
+
+?>
