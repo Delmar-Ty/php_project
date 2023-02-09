@@ -10,9 +10,9 @@
     $user = $result -> fetch_assoc();
 
     if (password_verify($_POST['password'], $user['pass'])) {
-        echo 'correct login';
+        header("Location: view.html");
     } else {
-        echo 'incorrect login';
+        header('Location: login.html');
     }
 
     mysqli_free_result($result);
