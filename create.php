@@ -34,8 +34,8 @@
     <div id="container">
         <h1 id="title">Add Item</h1>
         <form action="" id="form" method="post">
-            <input type="text" placeholder="Item" maxlength="16" id="item" name="item" required class="form-input">
-            <input type="number" placeholder="Calories" maxlength="32" id="calories" name="calories" required class="form-input">
+            <input type="text" placeholder="Item" id="item" name="item" required class="form-input">
+            <input type="number" placeholder="Calories" id="calories" name="calories" required class="form-input">
             <div id="button-container">
                 <button type="submit" id="create-button" class="btn">Create Account</button>
             </div>

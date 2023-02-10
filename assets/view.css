@@ -113,12 +113,14 @@ body {
     border-bottom-style: solid;
     border-color: white;
     border-width: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
     font-size: 1rem;
     overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .col:nth-child(1), .col:nth-child(2), .col:nth-child(3) {
