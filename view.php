@@ -15,6 +15,7 @@
     if ($result->num_rows == 0) {
         $insertDefault = "INSERT INTO users_menu (user_id, item, calories) VALUES ({$userID}, 'Cheeseburger', 520)";
         mysqli_query($conn, $insertDefault);
+        mysqli_free_result($result);
         header("Location: view.php?user=$username");
     }
 
@@ -31,20 +32,45 @@
     <link rel="stylesheet" href="assets/view.css">
 </head>
 <body>
+    <h1 id="title"><?php echo $username . "'s Food Menu" ?></h1>
     <div id="data-container">
+        <div id="overflow">
+            <!-- <div class="row">
+                <div class="col">Sample</div>
+                <div class="col">Sample</div>
+                <div class="col">
+                    <button class="btn" id="edit">Edit</button>
+                </div>
+                <div class="col">
+                    <button class="btn" id="delete">Delete</button>
+                </div>
+            </div> -->
 
-        <div class="row">
-            <div class="col">Sample</div>
-            <div class="col">Sample</div>
-            <div class="col">
-                <button class="btn" id="edit">Edit</button>
-            </div>
-            <div class="col">
-                <button class="btn" id="delete">Delete</button>
-            </div>
+            <?php 
+            
+            if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                        <div class="row">
+                            <div class="col">' . $row['item'] . '</div>
+                            <div class="col">' . $row['calories'] . '</div>
+                            <div class="col">
+                                <button class="btn" id="edit">Edit</button>
+                            </div>
+                            <div class="col">
+                                <button class="btn" id="delete">Delete</button>
+                            </div>
+                        </div>
+                    ';
+                }
+            }
+            
+            ?>
         </div>
-
-        <button id="add" class="btn">Add Item</button>
+        <div id="button-container">
+            <?php echo '<button id="add" class="btn"><a href="create.php?user=' . $username . '">Add Item</a></button>'; ?>
+            <button id="log-out" class="btn"><a href="login.php">Log Out</a></button>
+        </div>
     </div>
 </body>
 </html>

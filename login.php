@@ -13,7 +13,7 @@
         if (password_verify($_POST['password'], $user['pass'])) {
             header("Location: view.php?user={$username}");
         } else {
-            header('Location: login.html');
+            header('Location: login.php');
         }
     
         mysqli_free_result($result);
