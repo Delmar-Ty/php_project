@@ -55,10 +55,10 @@
                             <div class="col">' . $row['item'] . '</div>
                             <div class="col">' . $row['calories'] . '</div>
                             <div class="col">
-                                <button class="btn" id="edit">Edit</button>
+                                <button class="btn"><a href="edit.php?user=' . $username . '&id=' . $row['id'] . '" style="text-decoration: none; color: var(--smoky-black);">Edit</a></button>
                             </div>
                             <div class="col">
-                                <button class="btn" id="delete">Delete</button>
+                                <button class="btn" id="delete"><a href="delete.php?user=' . $username . '&id=' . $row['id'] . '" style="text-decoration: none; color: var(--smoky-black)">Delete</a></button>
                             </div>
                         </div>
                     ';
