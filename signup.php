@@ -21,6 +21,11 @@
             header('Location: login.php');
         }
     }
+
+
+    $database = "CREATE DATABASE food";
+    $sql = "CREATE TABLE users (id int PRIMARY KEY AUTO_INCREMENT, username varchar, pass text)";
+    $sql2 = "CREATE TABLE users_menu (id int PRIMARY KEY AUTO_INCREMENT, user_id int, item text, calories int)";
 ?>
 
 <!DOCTYPE html>
